@@ -10,12 +10,11 @@ filetype plugin on
 
 syntax enable         "habilita cor
 colorscheme ron       "esquema de cor
-set ttyfast           "inserts more chars and improves redrawing
 set autoindent        "self-explaining
 "set cindent           "C style of indentation
-set nobackup          "don't create annoying '~' files
 set backupdir=~/.vim/backup/
 set directory=~/.vim/backup/
+set nobackup          "don't create annoying '~' files
 
 set expandtab         "tabs to spaces
 "set noexpandtab
@@ -28,10 +27,6 @@ set showmatch         "when you insert a parenthesis, cursor briefly jumps
 set hls is            "acronym means: highlight search - incremental search
 set comments=sr:/*,mb:*,ex:*/     "what starts a comment line
 set shiftwidth=4      "indendation shift to the right
-"colorscheme evening   "this one's easy =)
-
-set history=50        "command history buffer size (in lines)
-"set tags=/home/helen/dash7/wl/tags
 
 set clipboard=unnamedplus
 
@@ -111,23 +106,6 @@ command! -nargs=1 -range SuperRetab <line1>,<line2>s/\v%(^ *)@<= {<args>}/\t/g
 "map! <C-e> <ESC>:vsplit<cr>i
 "nmap <C-r> :split<cr>
 "map! <C-r> <ESC>:split<cr>i
-"selecionar
-"map <C-b> <esc>v
-"imap <C-b> <esc>v
-
-"desfazer
-"map <C-z> <esc>u
-"imap <C-z> <esc>ui
-
-"copia
-"map <C-c> y
-"imap <C-c> yi
-"cola
-"map <C-v> <esc>P
-"imap <C-v> <esc>Pi
-"corta
-"map <C-x> x
-"imap <C-x> xi
 
 " *********************************************************************************************
 " comments.vim  
