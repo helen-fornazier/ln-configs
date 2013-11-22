@@ -70,6 +70,11 @@ set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not 
 " =========================
 " Pluging/Functions/Coding style
 " =========================
+" Highlight catacter 86th
+map <F5>  :match ErrorMsg '\%>85v.\+' <enter>
+" Clear Highlight
+map <S-F5>  :match <enter>
+map <F3> :TlistToggle<cr>
 map <F3> :TlistToggle<cr>
 let Tlist_Use_Right_Window = 1
 map <F2> :NERDTreeToggle<cr>
@@ -141,6 +146,11 @@ map L <esc>"0p
 " New line in normal mode
 map <S-Enter> O<Esc>
 map <CR> o<Esc>
+" Cscope find
+map <C-l> :cs f 
+map <C-L> :cs f 
+map! <C-l> <esc>:cs f 
+map! <C-L> <esc>:cs f 
 
 
 " ---------------------------------------------------------
