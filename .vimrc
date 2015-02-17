@@ -1,6 +1,24 @@
-filetype plugin on
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-"set incsearch       " vim searches while you're still typing
+" This is the Vundle package, which can be found on GitHub.
+" For GitHub repos, you specify plugins using the
+" 'user/repository' format
+Plugin 'gmarik/vundle'
+
+" We could also add repositories with a ".git" extension
+Plugin 'scrooloose/nerdtree.git'
+
+" Tag list on the right
+Plugin 'taglist.vim'
+
+" Complete tags
+Plugin 'OmniCppComplete'
+
+" Now we can turn our filetype functionality back on
+filetype plugin indent on
 
 " ---------------------------------------------------------
 "  COLOR
@@ -39,12 +57,6 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
-
-" ---------------------------------------------------------
-"  EASYTAGS
-" ---------------------------------------------------------
-" Disable periodic update of highlights
-:let g:easytags_on_cursorhold = 0
 
 " ---------------------------------------------------------
 "  GENERAL CONFIG
