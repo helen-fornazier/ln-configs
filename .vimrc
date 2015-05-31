@@ -17,6 +17,18 @@ Plugin 'taglist.vim'
 " Complete tags
 Plugin 'OmniCppComplete'
 
+" DelimitMate - auto close parenthesis, quotes, etc
+Plugin 'delimitMate.vim'
+
+" Git plugin
+Plugin 'fugitive.vim'
+
+"Disable capslock when back to normal mode
+Plugin 'suxpert/vimcaps'
+
+" Cscope plugin
+Plugin 'chazy/cscope_maps'
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
@@ -24,6 +36,7 @@ filetype plugin indent on
 "  COLOR
 " ---------------------------------------------------------
 syntax enable         " enable color
+syn on se title       " File title
 colorscheme ron       " color theeme
 "colorscheme evening   " this one's easy =)
 
@@ -33,8 +46,14 @@ colorscheme ron       " color theeme
 set autoindent        " indent automatically
 "set cindent           " C style of indentation
 "set lisp              " lisp indenting
-set expandtab         " expand tab characters to space characters
-set tabstop=4         " tab char display size
+"set expandtab         " expand tab characters to space characters
+"set tabstop=4         " tab char display size
+
+" Kernel style
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
+set noexpandtab
 
 " ---------------------------------------------------------
 "  BACKUP
@@ -83,7 +102,7 @@ set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not 
 " Pluging/Functions/Coding style
 " =========================
 " Highlight catacter 86th
-map <F5>  :match ErrorMsg '\%>85v.\+' <enter>
+map <F5>  :match ErrorMsg '\%>80v.\+' <enter>
 " Clear Highlight
 map <S-F5>  :match <enter>
 map <F3> :TlistToggle<cr>
@@ -134,35 +153,52 @@ map!<C-j> <ESC>:tabprevious<cr>i
 map <C-k> :tabnext<cr>
 map!<C-k> <ESC>:tabnext<cr>i
 
-nmap <C-Left> :tabprevious<cr>
-map!<C-Left> <ESC>:tabprevious<cr>i
-map <C-Right> :tabnext<cr>
-map!<C-Right> <ESC>:tabnext<cr>i
+"nmap <C-Left> :tabprevious<cr>
+"map!<C-Left> <ESC>:tabprevious<cr>i
+"map <C-Right> :tabnext<cr>
+"map!<C-Right> <ESC>:tabnext<cr>i
 
 " =========================
 " Line moves up/down
 " =========================
 " Swap the current line with the line just below
+"map <A-Down> <esc>ddp
+"imap <A-Down> <esc>ddpi
 map <C-Down> <esc>ddp
 imap <C-Down> <esc>ddpi
 " Swap the current line with the line just above
+"map <A-Up> <esc>ddkP
+"imap <A-Up> <esc>ddkPi
 map <C-Up> <esc>ddkP
 imap <C-Up> <esc>ddkPi
+
+
+" =========================
+" Disabling arrows for navigation
+" =========================
+"inoremap  <Up>     <NOP>
+"inoremap  <Down>   <NOP>
+"inoremap  <Left>   <NOP>
+"inoremap  <Right>  <NOP>
+"noremap   <Up>     <NOP>
+"noremap   <Down>   <NOP>
+"noremap   <Left>   <NOP>
+"noremap   <Right>  <NOP>
 
 " =========================
 " General mapping
 " =========================
 " Paste last yank
-map l <esc>"0p
-map L <esc>"0p
+"map l <esc>"0p
+"map L <esc>"0p
 " New line in normal mode
 map <S-Enter> O<Esc>
 map <CR> o<Esc>
 " Cscope find
-map <C-l> :cs f 
-map <C-L> :cs f 
-map! <C-l> <esc>:cs f 
-map! <C-L> <esc>:cs f 
+"map <C-l> :cs f
+"map <C-L> :cs f
+"map! <C-l> <esc>:cs f
+"map! <C-L> <esc>:cs f
 
 
 " ---------------------------------------------------------
