@@ -57,6 +57,7 @@ set autoindent        " indent automatically
 "set lisp              " lisp indenting
 "set expandtab         " expand tab characters to space characters
 "set tabstop=4         " tab char display size
+"set shiftwidth=4      " indendation shift to the right
 
 " Kernel style
 set tabstop=8
@@ -97,7 +98,6 @@ set showmatch         " when you insert a parenthesis, cursor briefly jumps
                       " to indicate where it was opened (if it's visible)
 set hls is            " acronym means: highlight search - incremental search
 set comments=sr:/*,mb:*,ex:*/       " what starts a comment line
-set shiftwidth=4      " indendation shift to the right
 set history=50        " command history buffer size (in lines)
 set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not working
                                     " just install gvim (even if you don't use it
