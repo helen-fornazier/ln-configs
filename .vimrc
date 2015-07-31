@@ -88,6 +88,12 @@ au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
 " ---------------------------------------------------------
+"  NerdTREE
+" ---------------------------------------------------------
+let NERDTreeShowBookmarks=1         " Open bookmarks at startup
+autocmd VimEnter * NERDTree         " Open NERDTree at startup
+
+" ---------------------------------------------------------
 "  GENERAL CONFIG
 " ---------------------------------------------------------
 set ttyfast           " inserts more chars and improves redrawing
@@ -102,8 +108,7 @@ set history=50        " command history buffer size (in lines)
 set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not working
                                     " just install gvim (even if you don't use it
                                     " to install de dependencies
-let NERDTreeShowBookmarks=1         " Open bookmarks at startup
-autocmd VimEnter * NERDTree         " Open NERDTree at startup
+
 " ---------------------------------------------------------
 "  KEY MAPPING
 " ---------------------------------------------------------
