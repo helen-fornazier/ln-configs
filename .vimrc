@@ -29,6 +29,15 @@ Plugin 'suxpert/vimcaps'
 " Cscope plugin
 Plugin 'chazy/cscope_maps'
 
+" HTML plugin
+Plugin 'ragtag.vim'
+
+" Kernel coding style
+Plugin 'vivien/vim-addon-linux-coding-style'
+
+" Keep case when replacing with :%S/bla/blu/gc
+Plugin 'abolish.vim'
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
@@ -93,7 +102,8 @@ set history=50        " command history buffer size (in lines)
 set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not working
                                     " just install gvim (even if you don't use it
                                     " to install de dependencies
-
+let NERDTreeShowBookmarks=1         " Open bookmarks at startup
+autocmd VimEnter * NERDTree         " Open NERDTree at startup
 " ---------------------------------------------------------
 "  KEY MAPPING
 " ---------------------------------------------------------
@@ -126,7 +136,8 @@ vnoremap <S-F8>   :TrimSpaces<CR>
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
 inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
-
+" Search in visual mode, select text and type //
+vnoremap // y/<C-R>"<CR>
 
 " =========================
 " Save/Quit file
