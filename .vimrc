@@ -91,7 +91,7 @@ set completeopt=menuone,menu,longest,preview
 "  NerdTREE
 " ---------------------------------------------------------
 let NERDTreeShowBookmarks=1         " Open bookmarks at startup
-autocmd VimEnter * NERDTree         " Open NERDTree at startup
+"autocmd VimEnter * NERDTree         " Open NERDTree at startup
 
 " ---------------------------------------------------------
 "  GENERAL CONFIG
