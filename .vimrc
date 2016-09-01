@@ -3,7 +3,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -13,31 +13,22 @@ Plugin 'VundleVim/Vundle.vim'
 " This is the Vundle package, which can be found on GitHub.
 " For GitHub repos, you specify plugins using the
 " 'user/repository' format
-Plugin 'gmarik/vundle'
 
 " We could also add repositories with a ".git" extension
 Plugin 'scrooloose/nerdtree.git'
 
 " Tag list on the right
-Plugin 'taglist.vim'
+Plugin 'Tagbar'
 
 " Complete tags
-Plugin 'OmniCppComplete'
+" Plugin 'OmniCppComplete'
+" Plugin 'Valloric/YouCompleteMe'
 
 " DelimitMate - auto close parenthesis, quotes, etc
 Plugin 'delimitMate.vim'
 
-" Git plugin
-Plugin 'fugitive.vim'
-
-"Disable capslock when back to normal mode
-Plugin 'suxpert/vimcaps'
-
 " Cscope plugin
 Plugin 'chazy/cscope_maps'
-
-" HTML plugin
-Plugin 'ragtag.vim'
 
 " Kernel coding style
 Plugin 'vivien/vim-addon-linux-coding-style'
@@ -45,8 +36,26 @@ Plugin 'vivien/vim-addon-linux-coding-style'
 " Keep case when replacing with :%S/bla/blu/gc
 Plugin 'abolish.vim'
 
+" Git auto diff
+Plugin 'airblade/vim-gitgutter'
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
+
+" ---------------------------------------------------------
+"  YouCompleteMe
+" ---------------------------------------------------------
+" let g:ycm_complete_in_comments_and_strings=1
+" let g:ycm_key_list_select_completion=['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
+" let g:ycm_autoclose_preview_window_after_completion = 1
+"
+" "This assumes your kernel directory has the word 'linux'
+" if getcwd() =~ "linux"
+"     let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf_kernel.py'
+" else
+"     let g:ycm_global_ycm_extra_conf='~/ycm_extra_conf.py'
+" endif
 
 " ---------------------------------------------------------
 "  COLOR
@@ -67,10 +76,10 @@ set autoindent        " indent automatically
 "set shiftwidth=4      " indendation shift to the right
 
 " Kernel style
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
-set noexpandtab
+" set tabstop=8
+" set softtabstop=8
+" set shiftwidth=8
+" set noexpandtab
 
 " ---------------------------------------------------------
 "  BACKUP
@@ -125,29 +134,29 @@ set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not 
 " =========================
 " Highlight catacter 86th
 map <F5>  :match ErrorMsg '\%>80v.\+' <enter>
+
 " Clear Highlight
 map <S-F5>  :match <enter>
-map <F3> :TlistToggle<cr>
-map <F3> :TlistToggle<cr>
-let Tlist_Use_Right_Window = 1
+
+" Tagbar
+map <F3> :TagbarToggle<cr>
+
+" NERDTree
 map <F2> :NERDTreeToggle<cr>
-" e style code
-map <F10> :set ts=8 sw=3 sts=8 noexpandtab cino=>5n-3f0^-2{2(0W1st0 nolist <enter>
+
 " highlight no caracter number 79th and set python style
 map <F9>  :match ErrorMsg '\%>79v.\+' <enter>  :set tabstop=4 sw=4 expandtab <enter>
-" highlight no caracter number 79th and set openocd style
-map <F12>  :match ErrorMsg '\%>79v.\+' <enter>  :set tabstop=4 sw=4 noexpandtab<enter>
+
 " replace CRLF by LF at the end of the line
 map <F7> :update <enter> ::e ++ff=dos <enter> :setlocal ff=unix <enter>
+
 " Show spaces at end of each line
 nnoremap <F8>     :ShowSpaces 1<CR>
+
 " Remove the spaces at end of each line
 nnoremap <S-F8>   m`:TrimSpaces<CR>``
 vnoremap <S-F8>   :TrimSpaces<CR>
-" build tags of your own project with CTRL+F12
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-noremap <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
-inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>
+
 " Search in visual mode, select text and type //
 vnoremap // y/<C-R>"<CR>
 
@@ -214,15 +223,11 @@ imap <C-Up> <esc>ddkPi
 " Paste last yank
 "map l <esc>"0p
 "map L <esc>"0p
-" New line in normal mode
-map <S-Enter> O<Esc>
-map <CR> o<Esc>
 " Cscope find
 "map <C-l> :cs f
 "map <C-L> :cs f
 "map! <C-l> <esc>:cs f
 "map! <C-L> <esc>:cs f
-
 
 " ---------------------------------------------------------
 "  DEFINITIONS OF FUNCTIONS AND COMMANDS
