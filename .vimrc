@@ -27,6 +27,9 @@ Plugin 'Tagbar'
 " DelimitMate - auto close parenthesis, quotes, etc
 Plugin 'delimitMate.vim'
 
+" Surround - add quote/parentheses/etc around a text
+Plugin 'tpope/vim-surround'
+
 " Cscope plugin
 Plugin 'chazy/cscope_maps'
 
