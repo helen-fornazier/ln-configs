@@ -42,8 +42,18 @@ Plugin 'abolish.vim'
 " Git auto diff
 Plugin 'airblade/vim-gitgutter'
 
+" Load vim preferences from local project. It looks for a .lvimrc file up to
+" the root
+Plugin 'localvimrc'
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
+
+"NOTES:
+"vim plugin ale -> linter pra tudo
+"netrw -> substituir o nerdtree
+"vimux -> exec tmux commands
+"vim-tests -> pluging pra rodar tests de dentro do im
 
 " ---------------------------------------------------------
 "  YouCompleteMe
@@ -78,6 +88,8 @@ colorscheme ron       " color theeme
 "  IDENTATION
 " ---------------------------------------------------------
 set autoindent        " indent automatically
+set list
+set lcs=tab:>.
 "set cindent           " C style of indentation
 "set lisp              " lisp indenting
 "set expandtab         " expand tab characters to space characters
@@ -133,6 +145,7 @@ set history=50        " command history buffer size (in lines)
 set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not working
                                     " just install gvim (even if you don't use it
                                     " to install de dependencies
+set scrolloff=20
 
 " ---------------------------------------------------------
 "  KEY MAPPING
@@ -141,7 +154,7 @@ set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not 
 " =========================
 " Pluging/Functions/Coding style
 " =========================
-" Highlight catacter 86th
+" Highlight character 80th
 map <F5>  :match ErrorMsg '\%>80v.\+' <enter>
 
 " Clear Highlight
@@ -153,11 +166,14 @@ map <F3> :TagbarToggle<cr>
 " NERDTree
 map <F2> :NERDTreeToggle<cr>
 
+" Execute current file
+map <C-e> :!./% <enter>
+
 " highlight no caracter number 79th and set python style
-map <F9>  :match ErrorMsg '\%>79v.\+' <enter>  :set tabstop=4 sw=4 expandtab <enter>
+"map <F9>  :match ErrorMsg '\%>79v.\+' <enter>  :set tabstop=4 sw=4 expandtab <enter>
 
 " replace CRLF by LF at the end of the line
-map <F7> :update <enter> ::e ++ff=dos <enter> :setlocal ff=unix <enter>
+"map <F7> :update <enter> ::e ++ff=dos <enter> :setlocal ff=unix <enter>
 
 " Show spaces at end of each line
 nnoremap <F8>     :ShowSpaces 1<CR>
@@ -267,3 +283,41 @@ endfunction
 
 command -bar -nargs=? ShowSpaces call ShowSpaces(<args>)
 command -bar -nargs=0 -range=% TrimSpaces <line1>,<line2>call TrimSpaces()
+
+"-----------------------------------------------------------
+" Indent Python in the Google way.
+
+setlocal indentexpr=GetGooglePythonIndent(v:lnum)
+
+let s:maxoff = 50 " maximum number of lines to look backwards.
+
+function GetGooglePythonIndent(lnum)
+
+  " Indent inside parens.
+  " Align with the open paren unless it is at the end of the line.
+  " E.g.
+  "   open_paren_not_at_EOL(100,
+  "                         (200,
+  "                          300),
+  "                         400)
+  "   open_paren_at_EOL(
+  "       100, 200, 300, 400)
+  call cursor(a:lnum, 1)
+  let [par_line, par_col] = searchpairpos('(\|{\|\[', '', ')\|}\|\]', 'bW',
+        \ "line('.') < " . (a:lnum - s:maxoff) . " ? dummy :"
+        \ . " synIDattr(synID(line('.'), col('.'), 1), 'name')"
+        \ . " =~ '\\(Comment\\|String\\)$'")
+  if par_line > 0
+    call cursor(par_line, 1)
+    if par_col != col("$") - 1
+      return par_col
+    endif
+  endif
+
+  " Delegate the rest to the original function.
+  return GetPythonIndent(a:lnum)
+
+endfunction
+
+let pyindent_nested_paren="&sw*2"
+let pyindent_open_paren="&sw*2"
