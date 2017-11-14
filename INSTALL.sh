@@ -30,4 +30,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 tmux source ~/.tmux.conf
 ~/.tmux/plugins/tpm/bin/install_plugins
 
+echo ""
+echo "NOTES:"
 echo "Execute: apt install xsel (or xclip): in order to yank to clipboard"
+echo "Execute: apt install vim-gtk in order to yank to clipboard"
