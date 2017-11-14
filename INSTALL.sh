@@ -29,3 +29,5 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Install plugins
 tmux source ~/.tmux.conf
 ~/.tmux/plugins/tpm/bin/install_plugins
+
+echo "Execute: apt install xsel (or xclip): in order to yank to clipboard"
