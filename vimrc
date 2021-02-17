@@ -42,6 +42,10 @@ Plugin 'abolish.vim'
 " Git auto diff
 Plugin 'airblade/vim-gitgutter'
 
+" Fuzzy finder
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
 " Now we can turn our filetype functionality back on
 filetype plugin indent on
 
@@ -73,6 +77,10 @@ syntax enable         " enable color
 syn on se title       " File title
 colorscheme ron       " color theeme
 "colorscheme evening   " this one's easy =)
+set list lcs=trail:·,tab:»· " show trailing spaces and tabs
+" highligh the 80th column
+set colorcolumn=80
+highlight ColorColumn ctermbg=black
 
 " ---------------------------------------------------------
 "  IDENTATION
@@ -123,6 +131,7 @@ let NERDTreeShowBookmarks=1         " Open bookmarks at startup
 " ---------------------------------------------------------
 set ttyfast           " inserts more chars and improves redrawing
 set number            " show line numbers
+set relativenumber    " show relative numbers
 set mouse=a           " grabs the mouse focus
                       " to disable, type ':set mouse=' (yep, equals nothing)
 set showmatch         " when you insert a parenthesis, cursor briefly jumps
@@ -133,6 +142,7 @@ set history=50        " command history buffer size (in lines)
 set clipboard=unnamedplus           " Enable clipboard copy paste. If it is not working
                                     " just install gvim (even if you don't use it
                                     " to install de dependencies
+set scrolloff=5
 
 " ---------------------------------------------------------
 "  KEY MAPPING
@@ -189,10 +199,10 @@ cmap wQ!<cr> wq!<cr>
 " =========================
 nmap <C-h> :tabnew<cr>
 map!<C-h> <ESC>:tabnew<cr>i
-nmap <C-j> :tabprevious<cr>
-map!<C-j> <ESC>:tabprevious<cr>i
-map <C-k> :tabnext<cr>
-map!<C-k> <ESC>:tabnext<cr>i
+nmap <C-k> :tabprevious<cr>
+map!<C-k> <ESC>:tabprevious<cr>i
+map <C-j> :tabnext<cr>
+map!<C-j> <ESC>:tabnext<cr>i
 
 "nmap <C-Left> :tabprevious<cr>
 "map!<C-Left> <ESC>:tabprevious<cr>i
